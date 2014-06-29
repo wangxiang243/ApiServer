@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.app.mapper.ImageInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.app.entity.ImageInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORIGNAL_IMAGE_NAME" property="orignalImageName" jdbcType="VARCHAR" />
+    <result column="IMAGE_NAME" property="imageName" jdbcType="VARCHAR" />
+    <result column="IMAGE_PATH" property="imagePath" jdbcType="VARCHAR" />
+    <result column="QR_NAME" property="qrName" jdbcType="VARCHAR" />
+    <result column="DIMENSION_CODE_PATH" property="dimensionCodePath" jdbcType="VARCHAR" />
+    <result column="UPLOAD_DATE" property="uploadDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORIGNAL_IMAGE_NAME, IMAGE_NAME, IMAGE_PATH, QR_NAME, DIMENSION_CODE_PATH, UPLOAD_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tf_r_image_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tf_r_image_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.app.entity.ImageInfo" >
+    insert into tf_r_image_info (ID, ORIGNAL_IMAGE_NAME, IMAGE_NAME, 
+      IMAGE_PATH, QR_NAME, DIMENSION_CODE_PATH, 
+      UPLOAD_DATE)
+    values (#{id,jdbcType=INTEGER}, #{orignalImageName,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, 
+      #{imagePath,jdbcType=VARCHAR}, #{qrName,jdbcType=VARCHAR}, #{dimensionCodePath,jdbcType=VARCHAR}, 
+      #{uploadDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.app.entity.ImageInfo" >
+    insert into tf_r_image_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orignalImageName != null" >
+        ORIGNAL_IMAGE_NAME,
+      </if>
+      <if test="imageName != null" >
+        IMAGE_NAME,
+      </if>
+      <if test="imagePath != null" >
+        IMAGE_PATH,
+      </if>
+      <if test="qrName != null" >
+        QR_NAME,
+      </if>
+      <if test="dimensionCodePath != null" >
+        DIMENSION_CODE_PATH,
+      </if>
+        UPLOAD_DATE,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orignalImageName != null" >
+        #{orignalImageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null" >
+        #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qrName != null" >
+        #{qrName,jdbcType=VARCHAR},
+      </if>
+      <if test="dimensionCodePath != null" >
+        #{dimensionCodePath,jdbcType=VARCHAR},
+      </if>
+        now(),
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.app.entity.ImageInfo" >
+    update tf_r_image_info
+    <set >
+      <if test="orignalImageName != null" >
+        ORIGNAL_IMAGE_NAME = #{orignalImageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null" >
+        IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="qrName != null" >
+        QR_NAME = #{qrName,jdbcType=VARCHAR},
+      </if>
+      <if test="dimensionCodePath != null" >
+        DIMENSION_CODE_PATH = #{dimensionCodePath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.app.entity.ImageInfo" >
+    update tf_r_image_info
+    set ORIGNAL_IMAGE_NAME = #{orignalImageName,jdbcType=VARCHAR},
+      IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
+      QR_NAME = #{qrName,jdbcType=VARCHAR},
+      DIMENSION_CODE_PATH = #{dimensionCodePath,jdbcType=VARCHAR},
+      UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
