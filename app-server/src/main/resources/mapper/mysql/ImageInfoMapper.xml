@@ -110,4 +110,12 @@
       UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+    
+    <select id="queryAllImageInfo" resultMap="BaseResultMap">
+      SELECT * FROM tf_r_image_info
+    </select>
+
+    <select id="queryPagedImageInfo" resultMap="BaseResultMap">
+      SELECT * FROM tf_r_image_info
+    </select>
 </mapper>

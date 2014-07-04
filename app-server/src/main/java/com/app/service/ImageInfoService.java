@@ -5,6 +5,7 @@ import com.app.mapper.ImageInfoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by wangxiang2 on 14-6-24.
@@ -19,4 +20,7 @@ public class ImageInfoService {
         imageInfoMapper.insertSelective(imageInfo);
     }
 
+    public List<ImageInfo> queryAllImageInfo(){
+        return imageInfoMapper.queryAllImageInfo();
+    }
 }

@@ -82,4 +82,5 @@ public class QRCodeHelper {
                 hintMap);
         return qrCodeResult.getText();
     }
+
 }

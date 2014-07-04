@@ -2,6 +2,8 @@ package com.app.mapper;
 
 import com.app.entity.ImageInfo;
 
+import java.util.List;
+
 public interface ImageInfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface ImageInfoMapper {
     int updateByPrimaryKeySelective(ImageInfo record);
 
     int updateByPrimaryKey(ImageInfo record);
+
+    List<ImageInfo> queryAllImageInfo();
+
+    List<ImageInfo> queryPagedImageInfo();
 }

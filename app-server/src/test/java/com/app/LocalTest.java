@@ -1,7 +1,11 @@
 package com.app;
 
+import com.app.utils.FileUtils;
+import com.app.utils.QRCodeHelper;
 import org.junit.Test;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,6 +81,9 @@ public class LocalTest {
 
     @Test
     public void testI(){
-        int r;
+        QRCodeHelper qr = new QRCodeHelper();
+        String filePath = "http://114.215.210.70:8080/xyyapi/app/download";
+        BufferedImage qrImage = qr.createImage(filePath,480,480);
+        FileUtils.createJPEGFile4zip("d:/", "download.jpg", qrImage);
     }
 }
