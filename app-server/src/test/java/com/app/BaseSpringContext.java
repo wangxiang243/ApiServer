@@ -31,7 +31,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml",
-		"file:src/main/webapp/WEB-INF/spring-mvc.xml" })
+//		"file:src/main/webapp/WEB-INF/spring-mvc.xml"
+})
 public class BaseSpringContext {// extends
 								// AbstractTransactionalJUnit4SpringContextTests
 								// {

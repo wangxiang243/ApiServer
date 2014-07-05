@@ -1,0 +1,8 @@
+/*paging*/
+.paging{ text-align:right;}
+.paging ul{ display:inline;}
+.paging ul li{ float:left;}
+.paging ul li { display:inline-block; padding:5px 10px; border:1px solid #d7d7d7; color:#3366cc;  margin-left:8px; text-align:center;}
+.paging ul li a:hover{ color:#fff; background-color:#fca775; text-decoration:none;}
+.paging ul li a:hover,.paging ul li.active { color:#fff; background-color:#fca775; text-decoration:none;}
+.paging ul li.disabled {padding: 5px 10px;margin: 2px;border: 1px solid #eee; color: #ddd;}

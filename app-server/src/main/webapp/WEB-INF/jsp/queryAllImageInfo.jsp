@@ -25,7 +25,7 @@
                 <c:if test="${(cnt.count-1)%5==0}">
                     <tr>
                 </c:if>
-                <td><img src="<%=basePath%>${imageInfo.imagePath}" height="120" width="120" /></td>
+                <td><img src="<%=basePath%>${imageInfo.compressImagePath}" height="120" width="120" /></td>
                 <c:if test="${(cnt.count%5)==0}">
                     </tr>
                 </c:if>

@@ -21,8 +21,22 @@
         <property name="dataSource" ref="dataSource"></property>
         <property name="configLocation" value="classpath:/mybatis/mybatis-configuration.xml" />
         <property name="mapperLocations" value="classpath*:/mapper/mysql/**/*.xml"></property>
+        <property name="plugins">
+            <list>
+                <ref bean="pageConfig"/>
+            </list>
+        </property>
     </bean>
-    
+
+    <bean id="pageConfig" class="com.app.utils.pagination.PaginationInterceptor">
+        <property name="properties">
+            <props>
+                <prop key="dbms">MYSQL</prop>
+                <prop key="sqlRegex">.*queryPaged.*</prop>
+            </props>
+        </property>
+    </bean>
+
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>

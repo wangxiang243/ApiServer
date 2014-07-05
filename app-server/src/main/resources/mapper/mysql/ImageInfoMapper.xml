@@ -9,9 +9,11 @@
     <result column="QR_NAME" property="qrName" jdbcType="VARCHAR" />
     <result column="DIMENSION_CODE_PATH" property="dimensionCodePath" jdbcType="VARCHAR" />
     <result column="UPLOAD_DATE" property="uploadDate" jdbcType="TIMESTAMP" />
+    <result column="COMPRESS_IMAGE_NAME" property="compressImageName" jdbcType="VARCHAR" />
+    <result column="COMPRESS_IMAGE_PATH" property="compressImagePath" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, ORIGNAL_IMAGE_NAME, IMAGE_NAME, IMAGE_PATH, QR_NAME, DIMENSION_CODE_PATH, UPLOAD_DATE
+    ID, ORIGNAL_IMAGE_NAME, IMAGE_NAME, IMAGE_PATH, QR_NAME, DIMENSION_CODE_PATH, UPLOAD_DATE,COMPRESS_IMAGE_NAME,COMPRESS_IMAGE_PATH
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +28,10 @@
   <insert id="insert" parameterType="com.app.entity.ImageInfo" >
     insert into tf_r_image_info (ID, ORIGNAL_IMAGE_NAME, IMAGE_NAME, 
       IMAGE_PATH, QR_NAME, DIMENSION_CODE_PATH, 
-      UPLOAD_DATE)
+      UPLOAD_DATE,COMPRESS_IMAGE_NAME,COMPRESS_IMAGE_PATH)
     values (#{id,jdbcType=INTEGER}, #{orignalImageName,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, 
       #{imagePath,jdbcType=VARCHAR}, #{qrName,jdbcType=VARCHAR}, #{dimensionCodePath,jdbcType=VARCHAR}, 
-      #{uploadDate,jdbcType=TIMESTAMP})
+      #{uploadDate,jdbcType=TIMESTAMP},#{compressImageName,jdbcType=VARCHAR},#{compressImagePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.app.entity.ImageInfo" >
     insert into tf_r_image_info
@@ -53,6 +55,12 @@
         DIMENSION_CODE_PATH,
       </if>
         UPLOAD_DATE,
+        <if test="compressImageName != null" >
+           COMPRESS_IMAGE_NAME,
+        </if>
+        <if test="compressImagePath != null" >
+            COMPRESS_IMAGE_PATH,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -74,6 +82,12 @@
         #{dimensionCodePath,jdbcType=VARCHAR},
       </if>
         now(),
+       <if test="compressImageName != null" >
+           #{compressImageName,jdbcType=VARCHAR},
+       </if>
+       <if test="compressImagePath != null" >
+           #{compressImagePath,jdbcType=VARCHAR},
+       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.app.entity.ImageInfo" >
@@ -97,6 +111,12 @@
       <if test="uploadDate != null" >
         UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP},
       </if>
+        <if test="compressImageName != null" >
+            COMPRESS_IMAGE_NAME,
+        </if>
+        <if test="compressImagePath != null" >
+            COMPRESS_IMAGE_PATH,
+        </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
@@ -107,7 +127,9 @@
       IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
       QR_NAME = #{qrName,jdbcType=VARCHAR},
       DIMENSION_CODE_PATH = #{dimensionCodePath,jdbcType=VARCHAR},
-      UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP}
+      UPLOAD_DATE = #{uploadDate,jdbcType=TIMESTAMP},
+      COMPRESS_IMAGE_NAME = #{compressImageName,jdbcType=VARCHAR},
+      compressImagePath = #{compressImagePath,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
     
