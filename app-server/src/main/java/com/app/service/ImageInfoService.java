@@ -2,6 +2,7 @@ package com.app.service;
 
 import com.app.entity.ImageInfo;
 import com.app.mapper.ImageInfoMapper;
+import com.app.utils.pagination.model.Paging;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,5 +23,9 @@ public class ImageInfoService {
 
     public List<ImageInfo> queryAllImageInfo(){
         return imageInfoMapper.queryAllImageInfo();
+    }
+
+    public List<ImageInfo> queryPagedImageInfo(Paging<ImageInfo> page){
+        return imageInfoMapper.queryPagedImageInfo(page.getRowBounds());
     }
 }

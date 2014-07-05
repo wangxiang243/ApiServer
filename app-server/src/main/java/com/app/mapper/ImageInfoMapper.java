@@ -1,6 +1,7 @@
 package com.app.mapper;
 
 import com.app.entity.ImageInfo;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface ImageInfoMapper {
 
     List<ImageInfo> queryAllImageInfo();
 
-    List<ImageInfo> queryPagedImageInfo();
+    List<ImageInfo> queryPagedImageInfo(RowBounds rows);
 }

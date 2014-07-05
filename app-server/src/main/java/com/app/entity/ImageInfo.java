@@ -17,6 +17,10 @@ public class ImageInfo {
 
     private Date uploadDate;
 
+    private String compressImageName;
+
+    private String compressImagePath;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +75,36 @@ public class ImageInfo {
 
     public void setUploadDate(Date uploadDate) {
         this.uploadDate = uploadDate;
+    }
+
+    public String getCompressImageName() {
+        return compressImageName;
+    }
+
+    public void setCompressImageName(String compressImageName) {
+        this.compressImageName = compressImageName;
+    }
+
+    public String getCompressImagePath() {
+        return compressImagePath;
+    }
+
+    public void setCompressImagePath(String compressImagePath) {
+        this.compressImagePath = compressImagePath;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageInfo{" +
+                "id=" + id +
+                ", orignalImageName='" + orignalImageName + '\'' +
+                ", imageName='" + imageName + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", qrName='" + qrName + '\'' +
+                ", dimensionCodePath='" + dimensionCodePath + '\'' +
+                ", uploadDate=" + uploadDate +
+                ", compressImageName='" + compressImageName + '\'' +
+                ", compressImagePath='" + compressImagePath + '\'' +
+                '}';
     }
 }

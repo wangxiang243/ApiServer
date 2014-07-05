@@ -5,10 +5,10 @@ import com.app.service.ImageInfoService;
 import com.app.utils.FileUtils;
 import com.app.utils.ImgCompress;
 import com.app.utils.QRCodeHelper;
+import com.app.utils.pagination.model.Paging;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -204,6 +203,8 @@ public class UploadController {
         imageInfo.setQrName(qrName);
         imageInfo.setImagePath(imageRelativePath);
         imageInfo.setOrignalImageName(originalName);
+        imageInfo.setCompressImageName(compressImageName);
+        imageInfo.setCompressImagePath(compressImageRelativePath);
         imageInfoService.insertSelective(imageInfo);
         InputStream is = null;
         try {
@@ -290,6 +291,8 @@ public class UploadController {
         imageInfo.setQrName(qrName);
         imageInfo.setImagePath(imageRelativePath);
         imageInfo.setOrignalImageName(originalName);
+        imageInfo.setCompressImageName(compressImageName);
+        imageInfo.setCompressImagePath(compressImageRelativePath);
         imageInfoService.insertSelective(imageInfo);
         ByteArrayOutputStream out = null;
         InputStream is = null;
@@ -317,5 +320,20 @@ public class UploadController {
         List<ImageInfo> imageInfoList = imageInfoService.queryAllImageInfo();
         model.addAttribute("imageInfoList",imageInfoList);
         return "queryAllImageInfo";
+    }
+
+    @RequestMapping("/queryPagedImageInfo")
+    public String queryPagedImageInfo(Model model,String pageNo){
+        int curPage = 0;
+        if(StringUtils.isEmpty(pageNo)){
+            curPage = 1;
+        }else{
+            curPage = Integer.parseInt(pageNo);
+        }
+        Paging<ImageInfo> pager = new Paging<ImageInfo>(curPage,50);
+        List<ImageInfo> imageInfoList = imageInfoService.queryPagedImageInfo(pager);
+        pager.result(imageInfoList);
+        model.addAttribute("pager",pager);
+        return "queryPagedImageInfo";
     }
 }
